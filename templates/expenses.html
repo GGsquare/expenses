@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Kontrola wydatków</title>
+    <style>
+        table,
+        th,
+        tr,
+        td {
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body style="background-color: rgba(138, 138, 138, 0.493);">
+<h2 style="color:red">Spis wydatków:</h2>
+
+<table>
+    <thead>
+        <th>Tytuł</th>
+        <th>Komu</th>
+        <th>Opis</th>
+        <th>Ile</th>
+        <th>Opłacone?</th>
+    </thead>
+    {% for expens in expens %}
+    <tr>
+        <td><a href="/books/{{ loop.index }}">{{ expens.title }}</a></td>
+        <td>{{ expens.autor }}</td>
+        <td>{{ expens.description }}</td>
+        <td>{{ expens.number }}</td>
+        <td>{{ expens.done }}</td>
+    </tr>
+    {% endfor %}
+</table>
+<div>
+    <h2 style="color:blue"> Dodaj opłatę: </h2>
+    <form method="POST" action="/expenses/">
+        {{ form.hidden_tag() }}
+        <table>
+            {% for field in form if field.widget.input_type != 'hidden' %}
+            <tr>
+                <th>{{ field.label }} {% if field.flags.required %}*{% endif %}</th>
+                <td>{{ field }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <input type="submit" value="Send">
+    </form>
+</div>
+</body>
+
+</html>
