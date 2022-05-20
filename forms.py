@@ -7,4 +7,4 @@ class ExpensesForm(FlaskForm):
     who = StringField('Komu', validators=[DataRequired()])
     description = TextAreaField('Opis', validators=[DataRequired()])
     number = StringField('Ile', validators=[DataRequired()])
-    done = BooleanField('Opłacone?', validators=[DataRequired()])
+    done = BooleanField('Opłacone?')

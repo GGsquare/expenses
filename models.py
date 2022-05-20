@@ -4,12 +4,12 @@ class Expenses:
     def __init__(self):
         try:
             with open("expenses.json", "r") as f:
-                self.expenses = json.load(f)
+                self.expenses1 = json.load(f)
         except FileNotFoundError:
             self.expenses = []
 
     def all(self):
-        return self.expenses()
+        return self.expenses
 
     def get(self, id):
         return self.expenses[id]

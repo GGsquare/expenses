@@ -7,7 +7,7 @@ app = Flask(__name__)
 app.config["SECRET_KEY"] = "moje_wydatki"
 
 @app.route("/expenses/", methods=["GET", "POST"])
-def expenses():
+def expenses_list():
     form = ExpensesForm()
     error = ""
     if request.method == "POST":
@@ -21,8 +21,8 @@ def expenses():
 
 @app.route("/expenses/<int:expens_id>/", methods=["GET", "POST"])
 def expens_details(expens_id):
-    expenses = expenses.get(expens_id - 1)
-    form = ExpensesForm(data=expenses)
+    expens = expenses.get(expens_id - 1)
+    form = ExpensesForm(data=expens)
 
     if request.method == "POST":
         if form.validate_on_submit():
